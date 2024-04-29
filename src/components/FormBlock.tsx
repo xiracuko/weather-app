@@ -38,7 +38,19 @@ function FormBlock() {
           </button>
         </form>
       </div>
-      {data ? <WeatherBlock /> : <SearchBlock />}
+      
+      {data ? 
+      <WeatherBlock 
+        time={data.current.is_day}
+        icon={data.current.condition.icon}
+        temp_c={data.current.temp_c}
+        text={data.current.condition.text}
+        city={data.location.name}
+        country={data.location.country}
+        humidity={data.current.humidity}
+        windSpeed={data.current.wind_kph}
+      /> : 
+      <SearchBlock />}
     </>
   )
 }

@@ -1,4 +1,6 @@
-function WeatherBlock() {
+import { IWeatherProps } from "../../types"
+
+const WeatherBlock: React.FC<IWeatherProps> = ({ time, icon, temp_c, text, city, country, humidity, windSpeed }) => {
   return (
     <div className="weatherBlock">
     <div className="weatherBlock__tempBlock">
