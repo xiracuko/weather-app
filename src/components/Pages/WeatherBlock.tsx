@@ -4,7 +4,7 @@ import windPng from "../../assets/wind.png"
 
 const WeatherBlock: React.FC<IWeatherProps> = ({ time, icon, temp_c, text, city, country, humidity, windSpeed }) => {
   return (
-    <div className="weatherBlock">
+    <div className={`${time === 1 ? "weatherBlock-day" : "weatherBlock-night"}`}>
     <div className="weatherBlock__tempBlock">
 
       <div className="tempBlock__topBlock">
