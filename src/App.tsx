@@ -1,6 +1,10 @@
+import "./scss/style.scss"
+
 function App() {
   return (
-    <div className="App">App</div>
+    <div className="container">
+      <div className="App">App</div>
+    </div>
   );
 }
 
