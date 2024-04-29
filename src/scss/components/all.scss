@@ -1,0 +1,13 @@
+.searchBlock {
+  max-width: 700px;
+  padding: 25px 125px;
+
+  background: #7b68ee;
+
+  border-radius: 0px 0px 25px 25px;
+
+  &--text {
+    font-size: 25px;
+    text-align: center;
+  }
+}
