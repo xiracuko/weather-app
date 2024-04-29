@@ -1,7 +1,22 @@
+import React, { ChangeEvent, FormEvent } from "react";
+import { useGetWeatherMutation } from "../redux/getWeather/api"
+
 function FormBlock() {
+
+  let defaultValue = "";
+  const [value, setValue] = React.useState(defaultValue);
+  const [getWeather, {data, isLoading}] = useGetWeatherMutation();
+
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    getWeather(value).then(() => setValue(defaultValue));
+  }
+
+  const onChange = (e: ChangeEvent<HTMLInputElement>) => setValue(e.target.value);
+
   return (
     <div className="formBlock">
-      <form className="formBlock--form">
+      <form className="formBlock--form" onSubmit={handleSubmit}>
         <input
           className="formBlock--input"
           type="text"
@@ -9,6 +24,8 @@ function FormBlock() {
           autoComplete="off"
           spellCheck="false"
           required
+          value={value}
+          onChange={onChange}
         />
 
         <button className="formBlock--btn" type="submit">
