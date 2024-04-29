@@ -1,9 +1,12 @@
+import FormBlock from "./components/FormBlock";
 import "./scss/style.scss"
 
 function App() {
   return (
     <div className="container">
-      <div className="App">App</div>
+      <div className="App">
+        <FormBlock />
+      </div>
     </div>
   );
 }
