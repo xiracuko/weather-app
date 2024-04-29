@@ -11,3 +11,119 @@
     text-align: center;
   }
 }
+
+.weatherBlock {
+  max-width: 700px;
+
+  padding: 25px 125px;
+
+  border-radius: 0px 0px 25px 25px;
+  background-image: linear-gradient(#7b68ee, #6897bb);
+
+  &__tempBlock {
+    display: flex;
+    gap: 25px;
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+.tempBlock {
+  &__topBlock {
+    display: flex;
+    align-items: center;
+    margin-top: 26px;
+  }
+
+  &__fromWhere {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+  }
+
+  &__precips {
+    display: flex;
+    align-items: center;
+    gap: 70px;
+  }
+}
+
+.topBlock {
+  &--img {
+    width: 80px;
+    height: 80px;
+  }
+
+  &__gradeBlock {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+.gradeBlock {
+  &--grade {
+    font-size: 70px;
+    line-height: 62px;
+    font-weight: 600;
+  }
+
+  &--subtitle {
+    position: relative;
+    bottom: 7px;
+
+    font-size: 17px;
+    font-weight: 300;
+  }
+}
+
+.fromWhere {
+  &--city {
+    font-size: 50px;
+    line-height: 50px;
+  }
+
+  &--country {
+    line-height: 17px;
+    font-size: 17px;
+    font-weight: 300;
+
+    position: relative;
+    bottom: 25px;
+  }
+}
+
+.precips {
+  &__humidityBlock,
+  &__windSpeedBlock {
+    display: flex;
+    align-items: center;
+  }
+
+  &__windSpeedBlock {
+    gap: 7px;
+  }
+}
+
+.humidityBlock {
+  &--img {
+    height: 35px;
+  }
+
+  &--humidity {
+    font-size: 17px;
+    font-weight: 400;
+  }
+}
+
+.windSpeedBlock {
+  &--img {
+    width: 35px;
+  }
+
+  &--windSpeed {
+    font-size: 17px;
+    font-weight: 400;
+  }
+}
