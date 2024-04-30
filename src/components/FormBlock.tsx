@@ -2,6 +2,7 @@ import React, { ChangeEvent, FormEvent } from "react";
 import { useGetWeatherMutation } from "../redux/getWeather/api"
 import WeatherBlock from "./Pages/WeatherBlock";
 import SearchBlock from "./Pages/SearchBlock";
+import { Navigate } from "react-router-dom";
 
 function FormBlock() {
 
@@ -38,19 +39,25 @@ function FormBlock() {
           </button>
         </form>
       </div>
-      
-      {data ? 
-      <WeatherBlock 
-        time={data.current.is_day}
-        icon={data.current.condition.icon}
-        temp_c={data.current.temp_c}
-        text={data.current.condition.text}
-        city={data.location.name}
-        country={data.location.country}
-        humidity={data.current.humidity}
-        windSpeed={data.current.wind_kph}
-      /> : 
-      <SearchBlock />}
+
+      {data ?
+        <>
+          <Navigate to="/weather" />
+          <WeatherBlock
+            time={data.current.is_day}
+            icon={data.current.condition.icon}
+            temp_c={data.current.temp_c}
+            text={data.current.condition.text}
+            city={data.location.name}
+            country={data.location.country}
+            humidity={data.current.humidity}
+            windSpeed={data.current.wind_kph}
+          />
+        </> :
+        <>
+          <Navigate to="/" />
+          <SearchBlock />
+        </>}
     </>
   )
 }
