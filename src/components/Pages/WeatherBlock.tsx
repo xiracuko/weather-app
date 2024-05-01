@@ -1,6 +1,7 @@
 import { IWeatherProps } from "../../types"
 import rainPng from "../../assets/raindrop.png"
 import windPng from "../../assets/wind.png"
+import React from "react"
 
 const WeatherBlock: React.FC<IWeatherProps> = ({ time, icon, temp_c, text, city, country, humidity, windSpeed }) => {
   return (
@@ -38,4 +39,4 @@ const WeatherBlock: React.FC<IWeatherProps> = ({ time, icon, temp_c, text, city,
   )
 }
 
-export default WeatherBlock
+export default React.memo(WeatherBlock);

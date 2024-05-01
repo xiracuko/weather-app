@@ -3,19 +3,23 @@ import { useGetWeatherMutation } from "../redux/getWeather/api"
 import WeatherBlock from "./Pages/WeatherBlock";
 import SearchBlock from "./Pages/SearchBlock";
 import { Navigate } from "react-router-dom";
+import { useDebounce } from "use-debounce";
 
 function FormBlock() {
 
   let defaultValue = "";
   const [value, setValue] = React.useState(defaultValue);
-  const [getWeather, {data, isLoading}] = useGetWeatherMutation();
+  const [debouncedValue] = useDebounce(value, 1000);
+  const [getWeather, { data, isLoading }] = useGetWeatherMutation();
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     getWeather(value).then(() => setValue(defaultValue));
   }
 
-  const onChange = (e: ChangeEvent<HTMLInputElement>) => setValue(e.target.value);
+  const handleChange = React.useCallback((e: ChangeEvent<HTMLInputElement>) => {
+    setValue(e.target.value);
+  }, []);
 
   return (
     <>
@@ -29,7 +33,7 @@ function FormBlock() {
             spellCheck="false"
             required
             value={value}
-            onChange={onChange}
+            onChange={handleChange}
           />
 
           <button className="formBlock--btn" type="submit">
