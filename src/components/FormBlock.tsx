@@ -1,16 +1,16 @@
-import React, { ChangeEvent, FormEvent } from "react";
+import React, { ChangeEvent, FormEvent, Suspense } from "react";
 import { useGetWeatherMutation } from "../redux/getWeather/api"
-import WeatherBlock from "./Pages/WeatherBlock";
-import SearchBlock from "./Pages/SearchBlock";
 import { Navigate } from "react-router-dom";
 import { useDebounce } from "use-debounce";
+import { LazyWeatherBlock } from "./Lazy/WeatherBlock.lazy";
+import { LazySearchBlock } from "./Lazy/SearchBlock.lazy";
 
 function FormBlock() {
 
   let defaultValue = "";
   const [value, setValue] = React.useState(defaultValue);
   const [debouncedValue] = useDebounce(value, 1000);
-  const [getWeather, { data, isLoading }] = useGetWeatherMutation();
+  const [getWeather, { data, isLoading, isSuccess }] = useGetWeatherMutation();
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -20,10 +20,10 @@ function FormBlock() {
   const handleChange = React.useCallback((e: ChangeEvent<HTMLInputElement>) => {
     setValue(e.target.value);
   }, []);
-
   return (
     <>
       <div className="formBlock">
+        {isLoading && <p>Loading...</p>}
         <form className="formBlock--form" onSubmit={handleSubmit}>
           <input
             className="formBlock--input"
@@ -44,24 +44,26 @@ function FormBlock() {
         </form>
       </div>
 
-      {data ?
-        <>
-          <Navigate to="/weather" />
-          <WeatherBlock
-            time={data.current.is_day}
-            icon={data.current.condition.icon}
-            temp_c={data.current.temp_c}
-            text={data.current.condition.text}
-            city={data.location.name}
-            country={data.location.country}
-            humidity={data.current.humidity}
-            windSpeed={data.current.wind_kph}
-          />
-        </> :
-        <>
-          <Navigate to="/" />
-          <SearchBlock />
-        </>}
+      <Suspense fallback={<p>Loading...</p>}>
+        {isSuccess ?
+          <>
+            <Navigate to="/weather" />
+            <LazyWeatherBlock
+              time={data.current.is_day}
+              icon={data.current.condition.icon}
+              temp_c={data.current.temp_c}
+              text={data.current.condition.text}
+              city={data.location.name}
+              country={data.location.country}
+              humidity={data.current.humidity}
+              windSpeed={data.current.wind_kph}
+            />
+          </> :
+          <>
+            <Navigate to="/" />
+            <LazySearchBlock />
+          </>}
+      </Suspense>
     </>
   )
 }
