@@ -3,7 +3,7 @@ import rainPng from "../../assets/raindrop.png"
 import windPng from "../../assets/wind.png"
 import React from "react"
 
-const WeatherBlock: React.FC<IWeatherProps> = ({ time, icon, temp_c, text, city, country, humidity, windSpeed }) => {
+const WeatherBlock: React.FC<IWeatherProps> = ({ time, icon, tempC, precip, city, country, humidity, windSpeed }) => {
   return (
     <div className={`${time === 1 ? "weatherBlock-day" : "weatherBlock-night"}`}>
     <div className="weatherBlock__tempBlock">
@@ -13,8 +13,8 @@ const WeatherBlock: React.FC<IWeatherProps> = ({ time, icon, temp_c, text, city,
           <img className="topBlock--img" src={icon} alt="img" />
         </div>
         <div className="topBlock__gradeBlock">
-          <p className="gradeBlock--grade">{temp_c}°C</p>
-          <p className="gradeBlock--subtitle">{text}</p>
+          <p className="gradeBlock--grade">{tempC}°C</p>
+          <p className="gradeBlock--subtitle">{precip}</p>
         </div>
       </div>
 
