@@ -15,7 +15,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/weather",
-        element: <WeatherBlock time={0} icon={''} temp_c={0} text={''} city={''} country={''} humidity={''} windSpeed={''} />
+        element: <WeatherBlock time={0} icon={''} tempC={0} precip={''} city={''} country={''} humidity={''} windSpeed={''} />
       }
     ]
   }
