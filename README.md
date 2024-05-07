@@ -30,4 +30,7 @@ When the time of day for the specified city and country is `Night`.
 ![weather-night](./src/assetsForGitHub/weatherNight.jpg)
 
 ### Conclusion
+
+We receive all data from a specific server async using an `RTK Query`, where initially our request field is `undefined` and thanks to `mutation` and the input value we set the value we need.
+
 Of course, we can re-enter new cities into the finished data block and get an updated result with a weather forecast! :)
